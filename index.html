@@ -102,29 +102,78 @@
            </ul>
          </section>
 
-  <!-- Events -->
-  <section id="events" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Upcoming Events</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-right">
-          <h3 class="font-semibold text-xl mb-2">Youth Mentorship Camp</h3>
-          <p class="text-sm text-gray-600">December 10, 2025</p>
-          <p class="mt-2">An inspiring 3-day camp focused on leadership and personal growth.</p>
+  <section id="events" class="events-section">
+  <div class="container">
+    <h2>Upcoming Events</h2>
+    <p class="subtitle">Stay tuned for activities that empower and inspire youth 🚀</p>
+
+    <div class="events-grid">
+      <!-- Event 1 -->
+      <div class="event-card" onclick="openModal('event1')">
+        <img src="images/event1.jpg" alt="Leadership Workshop">
+        <div class="event-info">
+          <h3>Youth Leadership Workshop</h3>
+          <p><strong>Date:</strong> October 15, 2025</p>
+          <p><strong>Location:</strong> Nairobi</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up">
-          <h3 class="font-semibold text-xl mb-2">Community Clean-up</h3>
-          <p class="text-sm text-gray-600">January 15, 2026</p>
-          <p class="mt-2">Join us in creating a cleaner, greener environment for our people.</p>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card" onclick="openModal('event2')">
+        <img src="images/event2.jpg" alt="Community Outreach">
+        <div class="event-info">
+          <h3>Community Outreach</h3>
+          <p><strong>Date:</strong> November 12, 2025</p>
+          <p><strong>Location:</strong> Kisumu</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left">
-          <h3 class="font-semibold text-xl mb-2">Youth Innovation Forum</h3>
-          <p class="text-sm text-gray-600">March 20, 2026</p>
-          <p class="mt-2">A platform for youths to showcase innovative solutions for the future.</p>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card" onclick="openModal('event3')">
+        <img src="images/event3.jpg" alt="Youth Empowerment Forum">
+        <div class="event-info">
+          <h3>Youth Empowerment Forum</h3>
+          <p><strong>Date:</strong> December 5, 2025</p>
+          <p><strong>Location:</strong> Mombasa</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Modal Popups -->
+<div id="event1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('event1')">&times;</span>
+    <h2>Youth Leadership Workshop</h2>
+    <p><strong>Date:</strong> October 15, 2025</p>
+    <p><strong>Location:</strong> Nairobi</p>
+    <p>This interactive workshop will equip young leaders with practical leadership, 
+    teamwork, and communication skills for community transformation.</p>
+  </div>
+</div>
+
+<div id="event2" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('event2')">&times;</span>
+    <h2>Community Outreach</h2>
+    <p><strong>Date:</strong> November 12, 2025</p>
+    <p><strong>Location:</strong> Kisumu</p>
+    <p>A day of service dedicated to giving back through mentorship, clean-ups, 
+    and spreading awareness about youth empowerment programs.</p>
+  </div>
+</div>
+
+<div id="event3" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('event3')">&times;</span>
+    <h2>Youth Empowerment Forum</h2>
+    <p><strong>Date:</strong> December 5, 2025</p>
+    <p><strong>Location:</strong> Mombasa</p>
+    <p>A networking platform bringing together youths, mentors, and organizations 
+    to share opportunities and strategies for positive change.</p>
+  </div>
+</div>
 
   <!-- Executives -->
   <section id="executives" class="py-16 bg-gray-50">
