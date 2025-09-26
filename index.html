@@ -6,7 +6,9 @@
   <title>Uwezo Pamoja Youths Association</title>
   <style>
     /* Reset */
-    * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, sans-serif;}
+
+    body {background: #f4f6fa; color:#333; line-height:1.6;}
 
     /* Navbar */
     .navbar {
@@ -14,108 +16,94 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
-      background: #2344d;
+      background: linear-gradient(90deg, #2344d, #4e73df);
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
     }
     .logo img {
-      max-height: 50px;
-      width: auto;
-      object-fit: contain;
+      max-height: 50px; width: auto; object-fit: contain;
     }
     .nav-links ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
+      list-style: none; display: flex; gap: 20px;
     }
     .nav-links ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      transition: color 0.3s;
+      text-decoration: none; color: #fff; font-weight: 600; transition: 0.3s;
     }
     .nav-links ul li a:hover {color: #ffd700;}
 
     /* Hero */
     .hero {
-      background: url('images/hero-bg.jpg') center/cover no-repeat;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-bg.jpg') center/cover no-repeat;
+      height: 85vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:white; padding:20px;
     }
-    .hero h1 {font-size: 3rem; background: rgba(0,0,0,0.5); padding: 10px;}
+    .hero h1 {font-size:3rem; margin-bottom:10px;}
+    .hero p {font-size:1.3rem;}
 
-    /* Sections */
-    section {padding: 60px 20px; max-width: 1000px; margin: auto;}
-    section h2 {text-align: center; margin-bottom: 20px; color: #2344d;}
+    /* Section styling */
+    section {padding:70px 20px; max-width:1100px; margin:auto;}
+    section h2 {text-align:center; margin-bottom:20px; color:#2344d; font-size:2rem;}
 
-    /* Core values & Objectives */
+    /* Grid cards */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
     }
     .card {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #fff; padding:20px; border-radius:12px;
+      box-shadow:0 5px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
     }
 
     /* Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
+    .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px;}
     .gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
+      width:100%; height:200px; object-fit:cover; border-radius:12px;
+      transition: transform 0.4s;
     }
+    .gallery img:hover {transform: scale(1.05);}
 
     /* Executives */
-    .executives {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
+    .executives {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; text-align:center;}
     .executives img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
+      width:120px; height:120px; border-radius:50%; object-fit:cover;
+      margin-bottom:10px; border:4px solid #2344d;
     }
 
+    /* Events list */
+    #events ul {list-style:none; text-align:center;}
+    #events li {background:#fff; padding:15px; margin:10px auto; max-width:500px;
+      border-radius:8px; box-shadow:0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Membership button */
+    #membership a {
+      display:inline-block; padding:12px 25px; background:#2344d; color:#fff;
+      border-radius:30px; text-decoration:none; font-weight:600;
+      transition:0.3s;
+    }
+    #membership a:hover {background:#4e73df;}
+
     /* Footer */
-    footer {
-      background: #2344d;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
+    footer {background:#2344d; color:white; text-align:center; padding:30px;}
     .socials a {
-      margin: 0 10px;
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
+      margin:0 10px; font-size:22px; color:white; text-decoration:none; transition:0.3s;
     }
+    .socials a:hover {color:#ffd700;}
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
   <header class="navbar">
-    <div class="logo">
-      <a href="#home"><img src="images/logo.png" alt="UPYA Logo"></a>
-    </div>
+    <div class="logo"><a href="#home"><img src="images/logo.png" alt="UPYA Logo"></a></div>
     <nav class="nav-links">
       <ul>
         <li><a href="#about">About</a></li>
@@ -132,7 +120,10 @@
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <h1>Uwezo Pamoja Youths Association<br><small>Defining the Undefined</small></h1>
+    <div>
+      <h1>Uwezo Pamoja Youths Association</h1>
+      <p>Defining the Undefined</p>
+    </div>
   </section>
 
   <!-- About -->
@@ -146,22 +137,22 @@
   <section id="core-values">
     <h2>Our Core Values</h2>
     <div class="grid">
-      <div class="card">Teamwork</div>
-      <div class="card">Integrity</div>
-      <div class="card">Transparency</div>
-      <div class="card">Accountability</div>
-      <div class="card">Equity</div>
+      <div class="card">🤝 Teamwork</div>
+      <div class="card">💡 Integrity</div>
+      <div class="card">🔎 Transparency</div>
+      <div class="card">📊 Accountability</div>
+      <div class="card">⚖️ Equity</div>
     </div>
   </section>
 
   <!-- Objectives -->
   <section id="objectives">
-    <h2>Objectives</h2>
+    <h2>Our Objectives</h2>
     <div class="grid">
-      <div class="card">✅ Promote unity among youths.</div>
-      <div class="card">✅ Empower members through skills training.</div>
-      <div class="card">✅ Support community development projects.</div>
-      <div class="card">✅ Mentor young leaders for tomorrow.</div>
+      <div class="card">✅ Promote unity among youths</div>
+      <div class="card">✅ Empower members through skills training</div>
+      <div class="card">✅ Support community development projects</div>
+      <div class="card">✅ Mentor young leaders for tomorrow</div>
     </div>
   </section>
 
@@ -198,9 +189,9 @@
   </section>
 
   <!-- Membership -->
-  <section id="membership">
+  <section id="membership" style="text-align:center;">
     <h2>Become a Member</h2>
-    <p>Join us today and be part of change! Click below to register:</p>
+    <p>Join us today and be part of the change! Click below to register:</p>
     <a href="https://forms.gle/your-form-link" target="_blank">📋 Register Here</a>
   </section>
 
@@ -216,7 +207,7 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact">
+  <section id="contact" style="text-align:center;">
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:upyakenya001@gmail.com">upyakenya001@gmail.com</a></p>
     <p>WhatsApp: <a href="https://wa.me/254742717364" target="_blank">0742717364</a></p>
