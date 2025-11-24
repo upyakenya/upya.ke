@@ -1,362 +1,430 @@
-<!DOCTYPE html>
+<!-- Save as index.html -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPYA – Uwezo Pamoja Youths Association</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- AOS Animation Library -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UPYA — Uwezo Pamoja Youths Association</title>
+
+  <!-- AOS animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <script src="https://kit.fontawesome.com/a2d9d6a64d.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --primary:#1E40AF;    /* deep blue */
+      --accent:#FFD700;     /* gold */
+      --muted:#f3f4f6;
+      --dark:#0f172a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#111; background:var(--muted); -webkit-font-smoothing:antialiased}
+    a{color:inherit}
+
+    /* ------- NAVBAR ------- */
+    .navbar{
+      position:fixed; top:0; left:0; right:0;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 24px; gap:16px;
+      background:linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+      backdrop-filter: blur(6px);
+      z-index:9999;
+    }
+    .logo-wrap{display:flex;align-items:center;gap:12px;}
+    .logo-wrap img{max-height:26px; width:auto; object-fit:contain; display:block;}
+    .nav-links{display:flex;gap:18px; align-items:center}
+    .nav-links a{color:#fff; text-decoration:none; font-weight:600; font-size:14px; padding:6px 8px; border-radius:6px; transition:all .18s}
+    .nav-links a:hover{background:rgba(255,255,255,0.08); color:var(--accent)}
+    .hamburger{display:none; color:#fff; font-size:20px; background:transparent; border:none}
+
+    /* ------- HERO ------- */
+    .hero{
+      height:100vh; min-height:520px;
+      background-image: url("images/hero.jpg"); /* change this */
+      background-size:cover; background-position:center;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      position:relative;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(2,6,23,0.45), rgba(2,6,23,0.45));
+      z-index:1;
+    }
+    .hero-inner{position:relative; z-index:2; color:#fff; padding:20px; max-width:920px}
+    .hero h1{font-size: clamp(28px, 4vw, 48px); margin:0 0 12px; line-height:1.02; font-weight:800; letter-spacing:0.5px}
+    .hero p{margin:0 0 18px; font-size:clamp(14px,1.6vw,18px); font-weight:400; opacity:0.95}
+    .btn{display:inline-block; padding:12px 22px; background:var(--accent); color:#111; border-radius:8px; font-weight:700; text-decoration:none; transition:transform .15s, box-shadow .15s}
+    .btn:hover{transform: translateY(-4px); box-shadow:0 10px 30px rgba(255,215,0,0.12)}
+
+    /* ------- SECTIONS ------- */
+    section{padding:72px 18px}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+
+    h2.section-title{font-size:26px;margin:0 0 14px;color:var(--dark);text-align:center}
+    p.lead{max-width:880px;margin:0 auto 18px;color:#334155;text-align:center}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
+    @media(min-width:860px){ .about-grid{grid-template-columns:1fr 420px} }
+
+    .about-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 8px 30px rgba(2,6,23,0.06)}
+
+    /* OBJECTIVES */
+    .objectives-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px}
+    .objective{background:linear-gradient(180deg,#fff,#fffbeb);padding:16px;border-radius:10px;box-shadow:0 6px 16px rgba(2,6,23,0.05);border-left:4px solid var(--accent)}
+
+    /* EVENTS */
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .event-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(2,6,23,0.06);display:flex;flex-direction:column}
+    .event-thumb{width:100%;height:180px;object-fit:cover;display:block}
+    .event-body{padding:14px}
+    .event-body h3{margin:0 0 8px;font-size:18px;color:var(--primary);font-weight:700}
+    .event-meta{color:#334155;font-weight:600;font-size:13px;margin-bottom:8px}
+    .event-desc{color:#475569;font-size:14px;line-height:1.45}
+
+    /* GALLERY by events */
+    .event-gallery{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.05);margin-bottom:18px}
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
+    .photo-grid img{width:100%;height:120px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .18s}
+    .photo-grid img:hover{transform:scale(1.04)}
+
+    /* EXECUTIVES */
+    .executive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+    .exec-card{background:#fff;padding:18px;border-radius:12px;text-align:center;box-shadow:0 6px 20px rgba(2,6,23,0.05)}
+    .exec-card img{width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 8px;display:block}
+
+    /* TESTIMONIALS */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .testimonial{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6px 20px rgba(2,6,23,0.04);font-style:italic;color:#0f172a}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr;gap:18px}
+    @media(min-width:860px){ .contact-grid{grid-template-columns:1fr 420px} }
+    .contact-form input,.contact-form textarea{width:100%;padding:12px;border:1px solid #e6e9ef;border-radius:8px;margin-bottom:10px}
+    .contact-form button{background:var(--primary);color:#fff;padding:12px;border:0;border-radius:8px;font-weight:700;cursor:pointer}
+
+    /* FOOTER */
+    footer{background:var(--dark);color:#fff;padding:22px;text-align:center}
+
+    /* LIGHTBOX */
+    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;z-index:99999}
+    #lightbox img{max-width:94%;max-height:90%;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+
+    /* Responsive */
+    @media(max-width:760px){
+      .nav-links{display:none}
+      .hamburger{display:block}
+      .hero{background-position:center 35%}
+      .hero h1{font-size:26px}
+      .photo-grid img{height:110px}
+    }
+
+    /* Small animation */
+    .fade-up{animation:fadeUp .9s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  </style>
 </head>
-<body class="font-sans text-gray-800">
+<body>
 
-  <!-- Navbar -->
-  <header class="fixed w-full bg-white shadow-md z-50">
-    <nav class="container mx-auto flex justify-between items-center p-4">  
-   <h2 class="gold-text">UPYA</h2>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <!-- LOGO on left: tiny auto-fit -->
+    <div class="logo-wrap" data-aos="fade-down">
+      <!-- Replace images/logo.png with your actual logo -->
+      <a href="#home"><img src="images/logo.png" alt="UPYA Logo"></a>
+    </div>
 
-<style>
-  .gold-text {
-    font-size: 20px;     
-    font-style: italic;
-    font-weight: bold;
-    background: linear-gradient(to right, #FFD700, #FFA500, #FFD700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-</style>
-
-    <ul class="hidden md:flex space-x-6 font-medium
-        <li><a href="#hero" class="hover:text-blue-600">Home</a></li>
-        <li><a href="#about" class="hover:text-blue-600">About</a></li>
-        <li><a href="#objectives" class="hover:text-blue-600">Objectives</a></li>
-        <li><a href="#events" class="hover:text-blue-600">Events</a></li>
-        <li><a href="#executives" class="hover:text-blue-600">Executives</a></li>
-        <li><a href="#gallery" class="hover:text-blue-600">Gallery</a></li>
-        <li><a href="#testimonials" class="hover:text-blue-600">Testimonials</a></li>
-        <li><a href="#membership" class="hover:text-blue-600">Membership</a></li>
-        <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
-      </ul>
+    <!-- NAV LINKS (right) -->
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#objectives">Objectives</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#executives">Executives</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#membership">Membership</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
   </header>
 
-  <!-- Hero -->
-  <section id="hero" class="h-screen flex items-center justify-center text-center bg-gradient-to-r from-blue-700 via-purple-600 to-pink-500 text-white">
-    <div data-aos="fade-up">
-      <h2 class="text-4xl md:text-6xl font-bold mb-4">Uwezo Pamoja Youths Association</h2>
-      <p class="text-lg md:text-2xl italic mb-6">Defining the Undefined</p>
-      <a href="#about" class="bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">Learn More</a>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-inner hero-content" data-aos="fade-up">
+      <h1>Uwezo Pamoja Youths Association</h1>
+      <p>Defining the Undefined — empowering, equipping, mentoring and nurturing tomorrow's world.</p>
+      <a class="btn" href="#membership">Become a Member</a>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">About Us</h2>
-      <p class="max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-        Uwezo Pamoja Youths Association (UPYA) is dedicated to empowering, equipping, mentoring, 
-        and nurturing tomorrow’s world. We strive to create an environment that cultivates positive 
-        impact in the community.
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">About UPYA</h2>
+      <p class="lead" data-aos="fade-up" data-aos-delay="120">
+        Uwezo Pamoja Youths Association (UPYA) is a youth-led community organisation focused on leadership,
+        mentorship, community projects and creating opportunities for the youth to grow and impact society.
       </p>
-          <section id="about" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">History</h2>
-      <p class="max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-        <p style="color:var(--muted)">Uwezo Pamoja Youths Association (UPYA) was born out of the passion 
-          to redefine the role of young people in society. From humble beginnings, it has grown into a strong platform that 
-          empowers, mentors and nurtures youth to create a positive community impact.
-          Built on teamwork, integrity, and accountability,UPYA continues to inspire a new generation of leaders.</p>
-      
-      <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <div class="p-6 bg-white shadow rounded-lg" data-aos="fade-right">
-          <h3 class="font-bold text-xl mb-2">Mission</h3>
-          <p>To empower, equip, mentor, and nurture tomorrow's world.</p>
+
+      <div class="about-grid" style="margin-top:20px">
+        <div class="about-card" data-aos="fade-right">
+          <h3 style="margin-top:0">Mission</h3>
+          <p>To empower, equip, mentor and nurture tomorrow's world.</p>
+          <h3>Vision</h3>
+          <p>Creating an environment that cultivates positive impact to the community.</p>
         </div>
-        <div class="p-6 bg-white shadow rounded-lg" data-aos="fade-left">
-          <h3 class="font-bold text-xl mb-2">Vision</h3>
-          <p>Creating an environment that cultivates positive impact in the community.</p>
+
+        <div data-aos="fade-left" style="display:flex;align-items:center;justify-content:center">
+          <img src="images/about.jpg" alt="About image" style="width:100%;max-width:420px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(2,6,23,0.08)">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Objectives -->
-        <section id="objectives" class="py-16 bg-blue-700 text-white">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-6" data-aos="zoom-in">Our Objectives</h2>
-          <ul>
-            <li>❤️To provide mentorship and guidance to young people in the community.</li>
-            <li>❤️To nurture talents and create opportunities for innovation.</li>
-            <li>❤️To engage in community development and environmental sustainability projects.</li>
-            <li>❤️To promote teamwork, integrity, and accountability among members.</li>
-           </ul>
-         </section>
+  <!-- OBJECTIVES -->
+  <section id="objectives">
+    <div class="container">
+      <h2 class="section-title" data-aos="zoom-in">Our Objectives & Core Values</h2>
+      <p class="lead" data-aos="zoom-in" data-aos-delay="120">Teamwork • Integrity • Transparency • Accountability • Equity</p>
 
-  <!--core values-->
-  <section id="core values" class="py-16 bg-blue-700 text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="zoom-in">Our Core Values</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-6 bg-blue-800 rounded-lg shadow" data-aos="zoom-in">Teamwork</div>
-              <div class ="p-6 bg-blue-800 rounded-lg shadow" <p class="text working hand in hand to achieve more. </p>
-        <div class="p-6 bg-blue-800 rounded-lg shadow" data-aos="zoom-in" data-aos-delay="150">Integrity & Transparency</div>
-        <div class="p-6 bg-blue-800 rounded-lg shadow" data-aos="zoom-in" data-aos-delay="300">Accountability & Equity</div>
+      <div class="objectives-grid" data-aos="fade-up" data-aos-delay="200">
+        <div class="objective"><strong>Empowerment</strong><div style="margin-top:6px;color:#475569">Build skills, confidence and opportunities for youth.</div></div>
+        <div class="objective"><strong>Mentorship</strong><div style="margin-top:6px;color:#475569">Guidance from experienced leaders and peers.</div></div>
+        <div class="objective"><strong>Community Impact</strong><div style="margin-top:6px;color:#475569">Projects that create real improvement in people’s lives.</div></div>
+        <div class="objective"><strong>Innovation</strong><div style="margin-top:6px;color:#475569">Support creative and practical youth-led solutions.</div></div>
+        <div class="objective"><strong>Collaboration</strong><div style="margin-top:6px;color:#475569">Work with partners for sustainable change.</div></div>
+        <div class="objective"><strong>Equity</strong><div style="margin-top:6px;color:#475569">Fair access and opportunity for all youths.</div></div>
       </div>
     </div>
   </section>
-  
 
-<section id="events" class="events-section">
-  <h2>Upcoming Events</h2>
-  <p class="lead-center">Stay tuned — we regularly run workshops, community service days and youth summits.</p>
-  <div class="events-container">
-    <div class="event-card">
-      <img src="IMG-20250926-WA0215[1].JPG" alt="mentorship">
-      <h3>Students Mentorship.</h3>
-      <p>A practical session for inspiring, guiding, and preparing young people for a purposeful future.</p>
-      <p><strong>Date:</strong> 2nd October 2025</p>
-       <p><strong>Venue:</strong> Nyamgun Secondary School</p>
+  <!-- EVENTS (small image heights so not large) -->
+  <section id="events">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Upcoming Events</h2>
+      <p class="lead" data-aos="fade-up" data-aos-delay="120">Join us — community events, mentorships and talent showcases.</p>
+
+      <div class="events-grid" data-aos="fade-up" data-aos-delay="200">
+        <!-- Event 1 -->
+        <article class="event-card">
+          <img class="event-thumb" src="images/event1.jpg" alt="Youth Leadership">
+          <div class="event-body">
+            <h3>Youth Leadership Workshop</h3>
+            <div class="event-meta">Dec 10, 2025 • Nairobi</div>
+            <div class="event-desc">One-day training on leadership, collaboration and startup skills for youths.</div>
+          </div>
+        </article>
+
+        <!-- Event 2 -->
+        <article class="event-card">
+          <img class="event-thumb" src="images/event2.jpg" alt="Community cleanup">
+          <div class="event-body">
+            <h3>Community Clean-Up Drive</h3>
+            <div class="event-meta">Jan 15, 2026 • Kisumu</div>
+            <div class="event-desc">A day of action to improve our local environment and promote civic pride.</div>
+          </div>
+        </article>
+
+        <!-- Event 3 -->
+        <article class="event-card">
+          <img class="event-thumb" src="images/event3.jpg" alt="Talent show">
+          <div class="event-body">
+            <h3>Youth Talent Showcase</h3>
+            <div class="event-meta">Mar 20, 2026 • Mombasa</div>
+            <div class="event-desc">A platform for talented youths to perform, compete and network with mentors.</div>
+          </div>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  .events-section {
-    padding: 60px 20px;
-    text-align: center;
-    background: #f8f9fa; /* light background */
-  }
+  <!-- GALLERY organized by events (multiple pics per event) -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Gallery — Events & Moments</h2>
 
-  .events-section h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: #333;
-    font-weight: bold;
-  }
-
-  .events-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .event-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 300px; /* not too large */
-    padding: 15px;
-    transition: transform 0.3s ease;
-  }
-
-  .event-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .event-card img {
-    width: 100%;
-    height: 180px; /* controlled size */
-    object-fit: cover; /* auto-fit image */
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  .event-card h3 {
-    font-size: 20px;
-    margin: 10px 0;
-    color: #222;
-  }
-
-  .event-card p {
-    font-size: 14px;
-    color: #555;
-  }
-</style>
-
-
-  <!-- Executives -->
-  <section id="executives" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Our Executives</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
-          <img src="images/executive1.jpg" alt="Executive 1" class="w-32 h-32 mx-auto rounded-full object-cover">
-          <h3 class="font-semibold mt-4">Hillary Onyango</h3>
-          <p class="text-sm text-gray-600">Chairperson</p>
-          <p class="bio">Passionate about empowering youth through leadership, mentorship, and community engagement.</p>
+      <!-- Event gallery block -->
+      <div class="event-gallery" data-aos="fade-up" data-aos-delay="120">
+        <h3 style="margin:0">Youth Mentorship — Kisumu (July 2025)</h3>
+        <p style="margin:6px 0 10px;color:#475569">Mentors, workshops and group coaching.</p>
+        <div class="photo-grid">
+          <img src="images/mentorship1.jpg" alt="mentorship" onclick="openLightbox(this)">
+          <img src="images/mentorship2.jpg" alt="mentorship" onclick="openLightbox(this)">
+          <img src="images/mentorship3.jpg" alt="mentorship" onclick="openLightbox(this)">
+          <img src="images/mentorship4.jpg" alt="mentorship" onclick="openLightbox(this)">
         </div>
-        <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
-          <img src="images/executive2.jpg" alt="Executive 2" class="w-32 h-32 mx-auto rounded-full object-cover">
-          <h3 class="font-semibold mt-4">Christine Odera</h3>
-          <p class="text-sm text-gray-600">Vice Chairperson</p>
-           <p class="bio">Dedicated to teamwork and transparency, ensuring that every youth has a voice in UPYA.</p>
+      </div>
+
+      <div class="event-gallery" data-aos="fade-up" data-aos-delay="200">
+        <h3 style="margin:0">Community Clean-Up — August 2025</h3>
+        <p style="margin:6px 0 10px;color:#475569">Volunteers and residents cleaning a market area.</p>
+        <div class="photo-grid">
+          <img src="images/cleanup1.jpg" alt="cleanup" onclick="openLightbox(this)">
+          <img src="images/cleanup2.jpg" alt="cleanup" onclick="openLightbox(this)">
+          <img src="images/cleanup3.jpg" alt="cleanup" onclick="openLightbox(this)">
         </div>
-        <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
-          <img src="images/executive3.jpg" alt="Executive 3" class="w-32 h-32 mx-auto rounded-full object-cover">
-          <h3 class="font-semibold mt-4">Dennis Omoro</h3>
-          <p class="text-sm text-gray-600">Treasurer</p>
-           <p class="bio">Focused on financial integrity and ensuring resources are used responsibly to benefit the community.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX for gallery -->
+  <div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="lightbox image"></div>
+
+  <!-- EXECUTIVES -->
+  <section id="executives">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Executive Team</h2>
+      <div class="executive-grid" data-aos="fade-up" data-aos-delay="120">
+        <div class="exec-card">
+          <img src="images/exec1.jpg" alt="chair">
+          <h4 style="margin:8px 0 6px">Hillary Onyango</h4>
+          <div style="color:#475569;font-weight:600">Chairperson</div>
         </div>
-         <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
-          <img src="images/executive3.jpg" alt="Executive 3" class="w-32 h-32 mx-auto rounded-full object-cover">
-          <h3 class="font-semibold mt-4">Brian Chiambe</h3>
-          <p class="text-sm text-gray-600">Secretary</p>
-           <p class="bio">Committed to accountability and efficient communication within the association.</p>
+        <div class="exec-card">
+          <img src="images/exec2.jpg" alt="vice">
+          <h4 style="margin:8px 0 6px">Kevin Otieno</h4>
+          <div style="color:#475569;font-weight:600">Secretary</div>
         </div>
-         <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
-          <img src="images/executive3.jpg" alt="Executive 3" class="w-32 h-32 mx-auto rounded-full object-cover">
-          <h3 class="font-semibold mt-4">Vanessa Akinyi</h3>
-          <p class="text-sm text-gray-600">ASS.Secretary</p>
-           <p class="bio">Committed to accountability and efficient communication within the association.</p>
+        <div class="exec-card">
+          <img src="images/exec3.jpg" alt="treasurer">
+          <h4 style="margin:8px 0 6px">Grace Achieng</h4>
+          <div style="color:#475569;font-weight:600">Treasurer</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section id="gallery" class="py-16 bg-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Our Gallery</h2>
-      <div class="grid md:grid-cols-3 gap-4">
-        <img src="Saved Pictures/1757253126804.jpg" class="rounded-lg shadow-lg object-cover w-full h-64" alt="Gallery 1" data-aos="zoom-in">
-        <img src="Saved Pictures/1000096032.jpg" class="rounded-lg shadow-lg object-cover w-full h-64" alt="Gallery 2" data-aos="zoom-in" data-aos-delay="150">
-        <img src="images/gallery3.jpg" class="rounded-lg shadow-lg object-cover w-full h-64" alt="Gallery 3" data-aos="zoom-in" data-aos-delay="300">
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">What Visitors Say</h2>
+      <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="120">
+        <div class="testimonial">"UPYA helped me find mentors and launch a small business." — Mary</div>
+        <div class="testimonial">"Great community spirit and practical training." — John</div>
+        <div class="testimonial">"Events are well organized and inclusive." — Achieng</div>
       </div>
     </div>
-    
-  <!-- Event 1 -->
-  <div class="event-gallery">
-    <h3></strong>Student Mentorship Program – Nyamgun</h3>
-      <p><strong>Date:</strong> 2nd October 2025</p>
-    <p>S.</p>
-    <div class="photo-grid">
-      <img src="IMG_20251002_154512_473.jpg" alt="Mentorship Event 1">
-      <img src="IMG_20251002_161252_798.jpg" alt="Mentorship Event 2">
-      <img src="IMG_20251002_174846_957.jpg" alt="Mentorship Event 3">
-    </div>
-  </div>
-</section>
-
-<style>
-  .gallery-section {
-    padding: 60px 20px;
-    background: #f8f9fa;
-    text-align: center;
-  }
-
-  .gallery-section h2 {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-
-  .event-gallery {
-    margin-bottom: 40px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .event-gallery h3 {
-    color: #333;
-    font-size: 22px;
-    margin-bottom: 5px;
-  }
-
-  .event-gallery p {
-    color: #555;
-    margin-bottom: 15px;
-  }
-
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-  }
-
-  .photo-grid img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s;
-  }
-
-  .photo-grid img:hover {
-    transform: scale(1.05);
-  }
-</style>
-
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="py-16 bg-purple-600 text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Testimonials</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-purple-700 p-6 rounded-lg shadow" data-aos="fade-up">
-          <p>"UPYA has changed my life by giving me mentorship and opportunities."</p>
-          <h4 class="mt-4 font-semibold">Mary Atieno</h4>
+  <!-- MEMBERSHIP (Google Form link or embed) -->
+  <section id="membership">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Become a Member</h2>
+      <p class="lead" data-aos="fade-up" data-aos-delay="120">Join UPYA — fill the form to become part of our movement.</p>
+      <div style="text-align:center" data-aos="zoom-in" data-aos-delay="220">
+        <!-- Replace the link with your Google Form embed link or direct URL -->
+        <a class="btn" href="YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener">Fill Membership Form</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Contact & Socials</h2>
+      <div class="contact-grid" style="margin-top:18px">
+        <div data-aos="fade-right">
+          <p><strong>Email:</strong> <a href="mailto:upyakenya001@gmail.com">upyakenya001@gmail.com</a></p>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/254742717364" target="_blank">+254 742 717 364</a></p>
+          <p style="margin-top:12px">Follow us:</p>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <a href="https://facebook.com/UPYA.kenya" target="_blank" style="color:#1877f2;font-size:20px"><i class="fab fa-facebook"></i></a>
+            <a href="https://instagram.com/UPYA.kenya" target="_blank" style="color:#e1306c;font-size:20px"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/UPYA.kenya" target="_blank" style="color:#ff0000;font-size:20px"><i class="fab fa-youtube"></i></a>
+            <a href="https://tiktok.com/@UPYA.kenya" target="_blank" style="color:#000;font-size:20px"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/254742717364" target="_blank" style="color:#25D366;font-size:20px"><i class="fab fa-whatsapp"></i></a>
+          </div>
         </div>
-        <div class="bg-purple-700 p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="150">
-          <p>"I gained leadership skills and confidence to impact my community."</p>
-          <h4 class="mt-4 font-semibold">John Otieno</h4>
-        </div>
-        <div class="bg-purple-700 p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
-          <p>"I love being part of a team that empowers the youth to grow."</p>
-          <h4 class="mt-4 font-semibold">Achieng Faith</h4>
+
+        <div data-aos="fade-left">
+          <form class="contact-form" onsubmit="alert('Form demo — replace with working backend or mailto'); return false;">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Membership -->
-  <section id="membership" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Become a Member</h2>
-      <p class="mb-4" data-aos="fade-up" data-aos-delay="100">
-        Join UPYA today and be part of a movement shaping the future. Fill out the membership form below:
-      </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-bVSpzMd9oerUC5GBtiDwGOjnbB7Cel26zq_3IdFLFrBiCw/viewform" target="_blank" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition" data-aos="zoom-in">
-        Fill Membership Form
-      </a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      &copy; <span id="year"></span> Uwezo Pamoja Youths Association (UPYA). All rights reserved.
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Contact Us</h2>
-      <p class="mb-4" data-aos="fade-up">Email: <a href="mailto:upya.kenya100@gmail.com" class="text-blue-600">upya.kenya100@gmail.com</a></p>
-      <p class="mb-4" data-aos="fade-up" data-aos-delay="150">WhatsApp: <a href="https://wa.me/254742717364" class="text-green-600">+254 742 717 364</a></p>
-      <div class="flex justify-center space-x-6 text-2xl" data-aos="zoom-in">
-        <a href="https://www.facebook.com/profile.php?id=100082027299079" class="text-blue-600"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/upya_kenya?igsh=bGx5NWcxem9objMx" class="text-pink-500"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/channel/UC7xyWqAL0dP5264__O-zVxA" class="text-red-600"><i class="fab fa-youtube"></i></a>
-        <a href="http://tiktok.com/@upya_ke" class="text-black"><i class="fab fa-tiktok"></i></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-blue-700 text-white text-center py-4">
-    <p>&copy; 2025 UPYA – Uwezo Pamoja Youths Association. All rights reserved.</p>
-     <small style="color:#9fb3b0">Built with ❤️ for the community</small>
-     </div>
   </footer>
 
-  <!-- AOS Script -->
+  <!-- LIGHTBOX element already in DOM -->
+  <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
+    AOS.init({ duration: 900, once: true });
+
+    // Small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple mobile menu toggle: clones nav links into mobile view
+    function toggleMenu(){
+      const nav = document.querySelector('.nav-links');
+      if (nav.style.display === 'flex') nav.style.display = 'none';
+      else nav.style.display = 'flex';
+    }
+
+    // Lightbox
+    function openLightbox(el){
+      const src = el.src || el.getAttribute('data-src');
+      const lb = document.getElementById('lightbox');
+      const im = document.getElementById('lightbox-img');
+      im.src = src;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      const lb = document.getElementById('lightbox');
+      lb.style.display = 'none';
+      document.getElementById('lightbox-img').src = '';
+      document.body.style.overflow = '';
+    }
+    // Close on ESC
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const href = a.getAttribute('href');
+        if(!href || href === '#') return;
+        const target = document.querySelector(href);
+        if(target){
+          window.scrollTo({ top: target.offsetTop - 68, behavior: 'smooth' });
+        }
+      });
     });
+
+    // Ensure images in hero lazy load friendliness
+    // (No additional code needed here — just ensure your images/ files exist)
   </script>
+
+  <!-- NOTES:
+     - Put your images in ./images/ e.g.
+         images/logo.png (recommended small PNG)
+         images/hero.jpg  (hero background)
+         images/about.jpg
+         images/event1.jpg event2.jpg event3.jpg
+         images/mentorship1.jpg mentorship2.jpg ...
+         images/cleanup1.jpg ...
+         images/gallery1.jpg ...
+         images/exec1.jpg exec2.jpg exec3.jpg
+     - Replace YOUR_GOOGLE_FORM_LINK with your real form URL.
+     - If you want the membership form embedded, replace the <a class="btn"> with an <iframe> embed (Google Forms).
+     - To change brand colors edit :root variables at top.
+  -->
 </body>
 </html>
