@@ -10,8 +10,8 @@
 
   <style>
     :root{
-      --primary:#1E40AF;    /* deep blue */
-      --accent:#FFD700;     /* gold */
+      --primary:#1E40AF;
+      --accent:#FFD700;
       --muted:#f6f7fb;
       --dark:#0f172a;
       --card-shadow: 0 8px 30px rgba(2,6,23,0.06);
@@ -203,9 +203,8 @@
       <p class="lead" data-aos="fade-up" data-aos-delay="120">Join us — community events, mentorship and talent showcases.</p>
 
       <div class="events-grid" data-aos="fade-up" data-aos-delay="200">
-        <!-- Event 1 -->
-        <article class="event-card" role="article">
-          <img class="event-thumb" src="IMG-20251125-WA0134.jpg" alt="Football match">
+        <article class="event-card">
+          <img class="event-thumb" src="IMG-20251125-WA0134.jpg" alt="Football match" onclick="openLightbox(this)">
           <div class="event-body">
             <h3>Youth Leadership Workshop</h3>
             <div class="event-meta">NOV, 29th, 2025 • Seme PapKadundo</div>
@@ -213,11 +212,8 @@
           </div>
         </article>
 
-     
-
-        <!-- Event 2 -->
         <article class="event-card">
-          <img class="event-thumb" src="rrdownload/Slide1.JPG" alt="GBV Awareness talk">
+          <img class="event-thumb" src="rrdownload/Slide1.JPG" alt="GBV Awareness talk" onclick="openLightbox(this)">
           <div class="event-body">
             <h3>GBV Awareness</h3>
             <div class="event-meta">NOV 21, 2025 • GOOGLE MEET</div>
@@ -228,7 +224,7 @@
     </div>
   </section>
 
-  <!-- GALLERY by event -->
+  <!-- GALLERY -->
   <section id="gallery" aria-labelledby="gallery-title">
     <div class="container">
       <h2 id="gallery-title" class="section-title" data-aos="fade-up">Gallery — Events & Moments</h2>
@@ -244,32 +240,31 @@
         </div>
       </div>
 
-        <div class="event-gallery" data-aos="fade-up" data-aos-delay="120">
+      <div class="event-gallery" data-aos="fade-up" data-aos-delay="120">
         <h3 style="margin:0">UPYA anniversary — Living World childrens home-Seme (APRIL 2025)</h3>
-        <p style="margin:6px 0 10px;color:#475569">celebrating a year of existance.</p>
+        <p style="margin:6px 0 10px;color:#475569">Celebrating a year of existence.</p>
         <div class="photo-grid">
           <img src="upya/1762834796345 - Copy.jpg" alt="Anniversary" onclick="openLightbox(this)">
           <img src="upya/1762834811764.jpg" alt="Anniversary" onclick="openLightbox(this)">
           <img src="upya/1762834791770.jpg" alt="Anniversary" onclick="openLightbox(this)">
-          <img src="upya/1762834764360.jpg" alt="aniversary" onclick="openLightbox(this)">
+          <img src="upya/1762834764360.jpg" alt="Anniversary" onclick="openLightbox(this)">
         </div>
       </div>
 
       <div class="event-gallery" data-aos="fade-up" data-aos-delay="200">
-        <h3 style="margin:0"> Cvic Education - Kisumu county assembly (MAY 2024)</h3>
-        <p style="margin:6px 0 10px;color:#475569">we succesfully organized a youth mentorship and civic education trip to the kisumu county assembly. the youths gained first hand knowledge on governance process and leadership skill. thank you to all who participated.</p>
+        <h3 style="margin:0">Civic Education - Kisumu County Assembly (MAY 2024)</h3>
+        <p style="margin:6px 0 10px;color:#475569">We successfully organized a youth mentorship and civic education trip to the Kisumu County Assembly. The youths gained first-hand knowledge on governance processes and leadership skills. Thank you to all who participated.</p>
         <div class="photo-grid">
           <img src="upya/1762834874868.jpg" alt="civic 1" onclick="openLightbox(this)">
           <img src="upya/1762834878374 - Copy.jpg" alt="civic 2" onclick="openLightbox(this)">
           <img src="upya/1762834882081 - Copy.jpg" alt="civic 3" onclick="openLightbox(this)">
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- LIGHTBOX -->
-  <div id="lightbox" onclick="closeLightbox()" role="dialog" aria-hidden="true">
+  <div id="lightbox" onclick="closeLightbox()" aria-hidden="true">
     <img id="lightbox-img" src="" alt="Open image">
   </div>
 
@@ -286,7 +281,7 @@
 
         <div class="exec-card">
           <img src="images/exec2.jpg" alt="Brian Chiambe">
-          <h4 style="margin:8px 0 6px">Brian chiambe</h4>
+          <h4 style="margin:8px 0 6px">Brian Chiambe</h4>
           <div style="color:#475569;font-weight:600">Secretary</div>
         </div>
 
@@ -317,7 +312,6 @@
       <h2 id="mem-title" class="section-title" data-aos="fade-up">Become a Member</h2>
       <p class="lead" data-aos="fade-up" data-aos-delay="120">Join UPYA — fill the membership form to sign up.</p>
       <div style="text-align:center" data-aos="zoom-in" data-aos-delay="220">
-        <!-- Replace with your Google Form link (or embed iframe instead) -->
         <a class="btn" href="https://forms.gle/9vmDchs1tJ2LTuoJ6" target="_blank" rel="noopener">Fill Membership Form</a>
       </div>
     </div>
@@ -335,7 +329,6 @@
 
           <p style="margin-top:12px">Follow us:</p>
           <div style="display:flex;gap:12px;margin-top:8px;align-items:center">
-            <!-- Real coloured icons -->
             <a href="https://www.facebook.com/profile.php?id=100082027299079" target="_blank" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook" style="color:#1877F2;font-size:22px"></i></a>
             <a href="https://www.instagram.com/upya_kenya?igsh=bGx5NWcxem9objMx" target="_blank" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" style="color:#E4405F;font-size:22px"></i></a>
             <a href="https://www.youtube.com/channel/UC7xyWqAL0dP5264__O-zVxA" target="_blank" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube" style="color:#FF0000;font-size:22px"></i></a>
@@ -363,9 +356,6 @@
     </div>
   </footer>
 
-  <!-- LIGHTBOX markup -->
-  <div id="lightbox" onclick="closeLightbox()" aria-hidden="true"><img id="lightbox-img" src="" alt="Open image"></div>
-
   <!-- SCRIPTS -->
   <script>
     // Year
@@ -386,7 +376,7 @@
       nav.style.borderRadius = '8px';
     }
 
-    // Lightbox functions
+    // Lightbox
     function openLightbox(el){
       const src = el.src || el.getAttribute('data-src');
       const lb = document.getElementById('lightbox');
@@ -405,13 +395,21 @@
     }
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
 
-    // Smooth scroll for nav links (offset for fixed header)
+    // Smooth scroll
     document.querySelectorAll('.nav-links a').forEach(a=>{
       a.addEventListener('click', (e)=>{
         e.preventDefault();
         const href = a.getAttribute('href');
-        if(!href || href === '#') return;
+        if(!href || href==='#') return;
         const target = document.querySelector(href);
         if(target){
           const headerHeight = document.querySelector('.navbar').offsetHeight;
-          const top = targ
+          const top = target.offsetTop - headerHeight;
+          window.scrollTo({top, behavior:'smooth'});
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
